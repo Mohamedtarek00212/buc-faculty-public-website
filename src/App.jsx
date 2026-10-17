@@ -168,17 +168,37 @@ function Header({ lang, setLang }) {
   </header>;
 }
 
+function SocialIcon({ platform }) {
+  const common = { viewBox: "0 0 24 24", width: 22, height: 22, fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
+  if (platform === "instagram") return <svg {...common}><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>;
+  if (platform === "linkedin") return <svg {...common}><rect x="2.5" y="2.5" width="19" height="19" rx="2"/><circle cx="7.2" cy="8" r="1" fill="currentColor" stroke="none"/><path d="M7.2 11v7M11.5 18v-7m0 3.2c0-2.1 1.2-3.3 3.1-3.3 1.9 0 2.9 1.3 2.9 3.3V18"/></svg>;
+  if (platform === "x") return <svg {...common}><path d="M4.5 3.5h3.2l11.8 17h-3.2zM19 3.5 5 20.5"/></svg>;
+  if (platform === "youtube") return <svg {...common}><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg>;
+  if (platform === "facebook") return <svg {...common}><circle cx="12" cy="12" r="9.5"/><path d="M13.9 20v-7h2.2l.3-2.7h-2.5V8.6c0-.8.3-1.2 1.3-1.2h1.3V5.1c-.6-.1-1.2-.1-1.8-.1-2.5 0-3.8 1.4-3.8 3.7v1.6H9V13h1.9v7" fill="currentColor" stroke="none"/></svg>;
+  return <svg {...common}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-2.4 2.5-3.5 5.5-3.5 9s1.1 6.5 3.5 9c2.4-2.5 3.5-5.5 3.5-9S14.4 5.5 12 3Z"/></svg>;
+}
+
 function Footer({ lang }) {
   const ar = lang === "ar";
   const cols = [
-    [ar ? "استكشف" : "Explore", [["/#about-buc", ar ? "عن جامعة BUC" : "About BUC"], ["/about", ar ? "عن الكلية" : "About the Faculty"], ["/programs", ar ? "البرامج الأكاديمية" : "Academic programs"], ["/admissions", ar ? "القبول والتحويل" : "Admissions"], ["/news", ar ? "الأخبار والفعاليات" : "News and events"]]],
-    [ar ? "تجربة الطالب" : "Student experience", [["/student-life", ar ? "الحياة الطلابية" : "Student life"], ["/career", ar ? "التدريب والتوظيف" : "Career and training"], ["/alumni", ar ? "الخريجون" : "Alumni"], ["/portal", ar ? "Smart Faculty Portal" : "Smart Faculty Portal"]]],
-    [ar ? "تواصل" : "Connect", [["/contact", ar ? "تواصل مع الكلية" : "Contact the Faculty"], ["/contact?topic=admissions", ar ? "استفسارات القبول" : "Admissions enquiries"], ["/contact?topic=visit", ar ? "رتب زيارة" : "Plan a visit"]]],
+    [ar ? "اكتشف" : "Explore", [["/#about-buc", ar ? "عن جامعة بدر" : "About BUC"], ["/about", ar ? "عن الكلية" : "About the Faculty"], ["/programs", ar ? "البرامج الأكاديمية" : "Academic programs"]]],
+    [ar ? "رحلتك" : "Your journey", [["/admissions", ar ? "القبول والرسوم" : "Admissions & fees"], ["/student-life", ar ? "الحياة الجامعية" : "Student life"], ["/career", ar ? "التدريب والمستقبل المهني" : "Career & training"]]],
+    [ar ? "المجتمع" : "Community", [["/news", ar ? "الأخبار والفعاليات" : "News & events"], ["/alumni", ar ? "الخريجون" : "Alumni"], ["/contact", ar ? "تواصل مع الكلية" : "Contact the Faculty"]]],
   ];
-  return <footer className="site-footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path className="footer-wave-accent" d="M-720 48C-540 16-360 76-180 44S180 8 360 45 720 76 900 43 1260 10 1440 45 1800 77 2160 42V100H-720Z"/><path className="footer-wave-base" d="M-720 63C-540 36-360 88-180 60S180 31 360 59 720 88 900 61 1260 32 1440 60 1800 89 2160 57V100H-720Z"/></svg></div><div className="shell footer-grid">
-    <div className="footer-brand"><a className="brand" href="/"><img className="footer-brand-logo" src={bucLogo} alt={ar ? "شعار جامعة بدر بالقاهرة" : "Badr University in Cairo logo"}/><span><strong>{ar ? "كلية إدارة الأعمال والاقتصاد" : "Faculty of Business & Economics"}</strong><small>BADR UNIVERSITY IN CAIRO</small></span></a><p>{ar ? "تعليم أعمال معاصر يربط الفهم الأكاديمي بالتطبيق والاستعداد المهني." : "Contemporary business education connecting academic understanding with practice and career preparation."}</p></div>
-    {cols.map(([title, items]) => <div className="footer-col" key={title}><h3>{title}</h3>{items.map(([href, label]) => <a key={href + label} href={href}>{label}</a>)}</div>)}
-  </div><div className="shell footer-bottom"><span>© 2026 BUC Faculty of Business & Economics</span><span>{ar ? "القاهرة، مصر" : "Cairo, Egypt"}</span></div></footer>;
+  const socials = [
+    ["instagram", "Instagram", "https://www.instagram.com/badr.university.in.cairo.buc/"],
+    ["linkedin", "LinkedIn", "https://www.linkedin.com/school/badr-university-buc/"],
+    ["x", "X", "https://x.com/badruniversity"],
+    ["youtube", "YouTube", "https://www.youtube.com/channel/UCvO4goB7ATvGwGsZhwecfwg"],
+    ["facebook", "Facebook", "https://www.facebook.com/badr.university/"],
+    ["website", ar ? "الموقع الرسمي للجامعة" : "Official BUC website", "https://buc.edu.eg/"],
+  ];
+  return <footer className="site-footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path className="footer-wave-accent" d="M-720 48C-540 16-360 76-180 44S180 8 360 45 720 76 900 43 1260 10 1440 45 1800 77 2160 42V100H-720Z"/><path className="footer-wave-base" d="M-720 63C-540 36-360 88-180 60S180 31 360 59 720 88 900 61 1260 32 1440 60 1800 89 2160 57V100H-720Z"/></svg></div>
+    <div className="shell footer-grid">
+      <div className="footer-brand"><a className="footer-logo" href="/"><img className="footer-brand-logo" src={bucLogo} alt={ar ? "شعار جامعة بدر بالقاهرة" : "Badr University in Cairo logo"}/></a><strong>{ar ? "كلية إدارة الأعمال والاقتصاد" : "Faculty of Business & Economics"}</strong><p>{ar ? "تعليم يجمع بين فهم الأعمال والاقتصاد وتطبيق المعرفة." : "Business and economics education that connects knowledge with practice."}</p></div>
+      <div className="footer-info"><div><h3>{ar ? "الموقع" : "Location"}</h3><p>{ar ? "مدينة بدر، القاهرة، مصر" : "Badr City, Cairo, Egypt"}</p></div><div><h3>{ar ? "التواصل" : "Get in touch"}</h3><a href="/contact">{ar ? "تواصل مع الكلية" : "Contact the Faculty"} <Arrow/></a></div><div><h3>{ar ? "الجامعة" : "University"}</h3><a href="https://buc.edu.eg/" target="_blank" rel="noopener noreferrer">{ar ? "الموقع الرسمي لجامعة بدر" : "Official BUC website"} <Arrow/></a></div></div>
+      <div className="footer-community"><div className="footer-social"><h3>{ar ? "تابع جامعة بدر" : "Follow BUC"}<span aria-hidden="true">///</span></h3><div className="footer-social-links">{socials.map(([platform, label, href]) => <a href={href} key={platform} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}><SocialIcon platform={platform}/></a>)}</div></div><nav className="footer-links-grid" aria-label={ar ? "روابط أسفل الصفحة" : "Footer links"}>{cols.map(([title, items]) => <div className="footer-col" key={title}><h3>{title}</h3>{items.map(([href, label]) => <a key={href + label} href={href}>{label}</a>)}</div>)}</nav></div>
+    </div><div className="footer-bottom-bar"><div className="shell footer-bottom"><span>© 2026 BUC · {ar ? "كلية إدارة الأعمال والاقتصاد" : "Faculty of Business & Economics"}</span><span>{ar ? "جامعة بدر بالقاهرة" : "Badr University in Cairo"}</span></div></div></footer>;
 }
 
 function Layout({ lang, setLang, children, dark = false, home = false }) {
