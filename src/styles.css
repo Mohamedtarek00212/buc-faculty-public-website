@@ -565,9 +565,10 @@ html[dir="rtl"] .portal-card { margin-inline-start: min(38vw, 620px); }
   .portal-language { inset-inline-end: 18px; }
   .portal-card { padding: 28px 22px; }
   .portal-card h1 { font-size: 36px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 24px; padding-block: 30px 32px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 22px; padding-block: 28px 30px; }
   .footer-community { grid-column: auto; }
-  .footer-links-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 22px; }
+  .footer-info { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .footer-links-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 20px; }
   .footer-bottom { display: block; padding: 13px 0; }
   .footer-bottom span { display: block; margin: 5px 0; }
 }
