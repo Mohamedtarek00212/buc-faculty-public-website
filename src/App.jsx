@@ -193,7 +193,7 @@ function Footer({ lang }) {
     ["facebook", "Facebook", "https://www.facebook.com/badr.university/"],
     ["website", ar ? "الموقع الرسمي للجامعة" : "Official BUC website", "https://buc.edu.eg/"],
   ];
-  return <footer className="site-footer"><div className="footer-wave" aria-hidden="true"><svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path className="footer-wave-accent" d="M-720 48C-540 16-360 76-180 44S180 8 360 45 720 76 900 43 1260 10 1440 45 1800 77 2160 42V100H-720Z"/><path className="footer-wave-base" d="M-720 63C-540 36-360 88-180 60S180 31 360 59 720 88 900 61 1260 32 1440 60 1800 89 2160 57V100H-720Z"/></svg></div>
+  return <footer className="site-footer">
     <div className="shell footer-grid">
       <div className="footer-brand"><a className="footer-logo" href="/"><img className="footer-brand-logo" src={bucLogo} alt={ar ? "شعار جامعة بدر بالقاهرة" : "Badr University in Cairo logo"}/></a><strong>{ar ? "كلية إدارة الأعمال والاقتصاد" : "Faculty of Business & Economics"}</strong><p>{ar ? "تعليم يجمع بين فهم الأعمال والاقتصاد وتطبيق المعرفة." : "Business and economics education that connects knowledge with practice."}</p></div>
       <div className="footer-info"><div><h3>{ar ? "الموقع" : "Location"}</h3><p>{ar ? "مدينة بدر، القاهرة، مصر" : "Badr City, Cairo, Egypt"}</p></div><div><h3>{ar ? "التواصل" : "Get in touch"}</h3><a href="/contact">{ar ? "تواصل مع الكلية" : "Contact the Faculty"} <Arrow/></a></div><div><h3>{ar ? "الجامعة" : "University"}</h3><a href="https://buc.edu.eg/" target="_blank" rel="noopener noreferrer">{ar ? "الموقع الرسمي لجامعة بدر" : "Official BUC website"} <Arrow/></a></div></div>
