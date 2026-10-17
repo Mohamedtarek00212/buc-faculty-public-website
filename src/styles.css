@@ -614,7 +614,7 @@ html[lang="en"] .home-main .hero-university-name { font: 800 11px/1.5 "Manrope",
 .home-main .button.hero-primary:hover { background: white; }
 .home-main .button.glass { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .35); }
 .home-main .smart-access { position: relative; z-index: 5; width: 100%; margin-top: -2px; padding-top: 2px; padding-bottom: clamp(90px, 12.8svh, 120px); background: #102a43; }
-.home-main .smart-access .shell { width: min(880px, calc(100vw - 60px)); transform: translateY(-188px); margin-bottom: -188px; }
+.home-main .smart-access .shell { width: min(880px, calc(100vw - 60px)); transform: translateY(-160px); margin-bottom: -160px; }
 .home-main .access-panel { overflow: hidden; color: var(--ink); background: #fff; border: 1px solid rgba(11, 79, 152, .12); border-top: 5px solid #78b7e3; border-radius: 8px; box-shadow: 0 20px 50px rgba(4, 20, 40, .2); }
 .home-main .access-features { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; gap: 0; }
 .home-main .access-feature { position: relative; min-height: 165px; display: flex; flex-direction: column; padding: 14px 21px 15px; background: #fff; border-inline-end: 1px solid #e5ebf1; transition: background .2s ease, box-shadow .2s ease; }
@@ -736,7 +736,7 @@ html[dir="ltr"] .landing-app .footer-col a:hover { transform: translateX(4px); }
   .home-main .home-hero-content { padding-block: 125px 130px; }
   .home-main .home-hero-content h1 { max-width: 550px; font-size: clamp(36px, 6.4vw, 54px); }
   .home-main .smart-access { padding-bottom: 42px; }
-  .home-main .smart-access .shell { width: min(600px, calc(100vw - 32px)); transform: translateY(-78px); margin-bottom: -78px; }
+  .home-main .smart-access .shell { width: min(600px, calc(100vw - 32px)); transform: translateY(-66px); margin-bottom: -66px; }
   .home-main .access-features { grid-template-columns: 1fr; padding: 0; }
   .home-main .access-feature { min-height: 0; padding: 16px 22px; border-inline-end: 0; border-bottom: 1px solid #e5ebf1; }
   .home-main .access-feature:last-child { border-bottom: 0; }
@@ -776,7 +776,7 @@ html[dir="ltr"] .landing-app .footer-col a:hover { transform: translateX(4px); }
   .home-main .home-hero-content h1 { max-width: 370px; margin-bottom: 15px; font-size: 36px; }
   .home-main .home-hero-content > .hero-lead { font-size: 14px; line-height: 1.65; }
   .home-main .smart-access { padding-bottom: 38px; }
-  .home-main .smart-access .shell { transform: translateY(-70px); margin-bottom: -70px; }
+  .home-main .smart-access .shell { transform: translateY(-58px); margin-bottom: -58px; }
   .home-main .access-feature { padding: 15px 20px; }
   .home-main .programs-preview { padding-top: 85px; }
   .home-main .story-image, .home-main .story-image img { min-height: 330px; height: 330px; }
@@ -890,41 +890,71 @@ html[dir="ltr"] .landing-app .footer-col a:hover { transform: translateX(4px); }
   .home-about-buc-points { grid-template-columns: 1fr; gap: 10px; }
 }
 
-/* On the landing page, navigation sits directly on the hero image. */
-.landing-app .site-header { padding-top: 0; min-height: 86px; border-top: 0; color: #fff; }
-.landing-app .nav-row { width: var(--shell); height: 86px; padding-inline: 0; gap: 24px; border: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
-.landing-app .header-identity { min-width: 0; gap: 13px; }
-.landing-app .site-header .brand-logo { padding: 3px; background: #fff; border-color: #fff; box-shadow: 0 5px 18px rgba(2,16,34,.2); border-radius: 5px; }
-.landing-app .site-header .brand-logo img { width: 120px; }
+/* Homepage utility navigation: real student services, separate from admissions CTAs. */
+.landing-app .site-header { min-height: 63px; padding: 0; color: #102a43; background: #fff; border: 0; border-bottom: 3px solid #0b4f98; box-shadow: 0 4px 8px rgba(0,0,0,.2), 0 12px 28px rgba(0,0,0,.17); }
+.landing-app .nav-row { width: var(--shell); height: 60px; padding: 0; gap: clamp(14px,1.7vw,25px); border: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.landing-app .header-identity { min-width: 0; gap: 17px; }
+.landing-app .site-header .brand-logo { padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; filter: none; }
+.landing-app .site-header .brand-logo img { width: 118px; max-height: 47px; object-fit: contain; }
 .header-faculty-name { max-width: 165px; color: #fff; font-size: 11px; font-weight: 800; line-height: 1.45; text-shadow: 0 2px 9px rgba(0,0,0,.25); }
 html[dir="rtl"] .header-faculty-name { direction: rtl; text-align: right; }
-.landing-app .header-quicklinks { display: none; }
-.landing-app .nav-actions { margin-inline-start: auto; }
-.landing-app .language { width: 37px; height: 37px; color: #fff; background: rgba(8,34,58,.28); border-color: rgba(255,255,255,.65); box-shadow: none; backdrop-filter: blur(8px); }
-.landing-app .menu { width: 105px; height: 42px; gap: 10px; padding-inline: 14px; color: #fff; background: rgba(8,34,58,.28); border-color: rgba(255,255,255,.65); box-shadow: none; backdrop-filter: blur(8px); }
-.landing-app .menu:hover { background: rgba(8,34,58,.55); }
+.landing-app .header-faculty-name { color: #294763; text-shadow: none; }
+.landing-app .student-utilities { display: flex; align-items: center; gap: clamp(16px,2vw,28px); margin-inline-start: auto; }
+.landing-app .student-utilities a { display: inline-flex; align-items: center; gap: 6px; color: #183c60; font: 800 12px/1.5 "Cairo",sans-serif; text-shadow: none; text-transform: none; letter-spacing: 0; }
+html[lang="en"] .landing-app .student-utilities a { font-family: "Manrope",sans-serif; font-size: 11px; }
+.landing-app .student-utilities a + a { padding-inline-start: clamp(16px,2vw,28px); border-inline-start: 1px solid #dce5ed; }
+.landing-app .student-utilities a:hover,.landing-app .student-utilities a:focus-visible { color: #0b4f98; }
+.landing-app .student-utilities a::after { bottom: -8px; background: #0b4f98; }
+.landing-app .student-utilities .arrow { color: #3e83bd; font-size: 14px; }
+.landing-app .header-conversion-actions { gap: 10px; }
+.landing-app .header-conversion-actions a { min-height: 34px; padding: 7px 13px; border: 1px solid #d3dfeb; border-radius: 999px; transition: color .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease; }
+.landing-app .header-conversion-actions a + a { padding-inline-start: 13px; border-inline-start: 1px solid #d3dfeb; }
+.landing-app .header-conversion-actions a::after { display: none; }
+.landing-app .header-conversion-actions .header-adviser-link { color: #fff; background: #102a43; border-color: #102a43; box-shadow: 0 6px 14px rgba(16,42,67,.14); }
+.landing-app .header-conversion-actions .header-adviser-link .arrow { color: #9dcff0; }
+.landing-app .header-conversion-actions .header-visit-link { color: #0b4f98; background: #f5f9fd; }
+.landing-app .header-conversion-actions a:hover,.landing-app .header-conversion-actions a:focus-visible { color: #fff; background: #0b4f98; border-color: #0b4f98; box-shadow: 0 7px 16px rgba(11,79,152,.2); transform: translateY(-1px); }
+.landing-app .header-conversion-actions a:hover .arrow,.landing-app .header-conversion-actions a:focus-visible .arrow { color: #fff; }
+.utility-label-short { display: none; }
+.landing-app .nav-actions { margin-inline-start: 0; }
+.landing-app .language { width: auto; min-width: 64px; height: 32px; padding-inline: 11px; color: #0b4f98; background: #f4f8fc; border-color: #cdddec; border-radius: 999px; box-shadow: none; backdrop-filter: none; font-size: 10px; }
+.landing-app .menu { width: 88px; height: 34px; gap: 8px; padding-inline: 11px; color: #fff; background: #0b4f98; border: 1px solid #0b4f98; box-shadow: none; backdrop-filter: none; }
+.landing-app .menu:hover { background: #073a75; }
 .landing-app .menu b { font-size: 11px; }
 .landing-app .menu i,.landing-app .menu i span { width: 20px; }
 .landing-app .menu i span { height: 2px; margin-block: 4px; }
 .landing-app .menu.active i span:first-child { transform: translateY(6px) rotate(45deg); }
 .landing-app .menu.active i span:last-child { transform: translateY(-6px) rotate(-45deg); }
-.landing-app .nav-links { top: calc(100% + 2px); right: 0; border-radius: 18px; }
+.landing-app .nav-links { top: calc(100% + 2px); right: 0; border-radius: 0 0 18px 18px; }
 @media (max-width: 1000px) {
   .header-faculty-name { display: none; }
+  .landing-app .student-utilities { gap: 14px; }
+  .landing-app .student-utilities a + a { padding-inline-start: 14px; }
+  .landing-app .student-utilities a:last-child { display: none; }
+  .landing-app .header-conversion-actions { gap: 8px; }
 }
 @media (max-width: 820px) {
-  .landing-app .site-header { min-height: 70px; padding-top: 0; }
-  .landing-app .nav-row { width: var(--shell); height: 70px; padding-inline: 0; }
-  .landing-app .site-header .brand-logo img { width: 112px; }
+  .landing-app .site-header { min-height: 59px; }
+  .landing-app .nav-row { width: var(--shell); height: 56px; }
+  .landing-app .site-header .brand-logo img { width: 108px; }
+  .landing-app .student-utilities a:not(:first-child) { display: none; }
+  .landing-app .student-utilities a { font-size: 11px; }
+  .landing-app .student-utilities .utility-label-full { display: none; }
+  .landing-app .student-utilities .utility-label-short { display: inline; }
   .landing-app .nav-links { right: 0; width: min(100%, 640px); max-height: calc(100svh - 80px); }
 }
 @media (max-width: 520px) {
-  .landing-app .nav-row { width: var(--shell); height: 64px; gap: 8px; padding-inline: 0; }
-  .landing-app .site-header .brand-logo img { width: 105px; }
-  .landing-app .nav-actions { gap: 7px; }
-  .landing-app .menu { width: 84px; height: 39px; gap: 6px; padding-inline: 9px; }
+  .landing-app .site-header { min-height: 55px; }
+  .landing-app .nav-row { width: var(--shell); height: 52px; gap: 5px; }
+  .landing-app .site-header .brand-logo img { width: 96px; }
+  .landing-app .nav-actions { gap: 5px; }
+  .landing-app .student-utilities { margin-inline-start: auto; }
+  .landing-app .student-utilities a { font-size: 10px; }
+  .landing-app .student-utilities .arrow { display: none; }
+  .landing-app .header-conversion-actions .header-adviser-link { min-height: 30px; padding: 6px 8px; }
+  .landing-app .menu { width: 68px; height: 32px; gap: 5px; padding-inline: 7px; }
   .landing-app .menu b { display: block; font-size: 10px; }
   .landing-app .menu i,.landing-app .menu i span { width: 16px; }
-  .landing-app .language { width: 33px; height: 33px; font-size: 12px; }
+  .landing-app .language { width: auto; min-width: 55px; height: 28px; padding-inline: 8px; font-size: 9px; }
   .landing-app .nav-links { right: 0; width: 100%; padding: 23px 20px; }
 }

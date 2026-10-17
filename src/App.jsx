@@ -15,6 +15,7 @@ import admissionsImage from "./assets/images/admissions-welcome.jpg";
 import contactImage from "./assets/images/contact-campus.jpg";
 import portalImage from "./assets/images/portal-login.jpg";
 import bucLogo from "./assets/images/buc-logo.png";
+import bucBlueLogo from "./assets/images/buc-blue-transparent.png";
 import admissionStepsPhoto from "./assets/images/admission-steps-photo.jpg";
 import tuitionFeesPhoto from "./assets/images/tuition-fees-photo.jpg";
 import scholarshipsPhoto from "./assets/images/scholarships-photo.jpg";
@@ -102,7 +103,7 @@ function Arrow({ down = false }) {
   return <span aria-hidden="true" className="arrow">{down ? "↓" : "↗"}</span>;
 }
 
-function Header({ lang, setLang }) {
+function Header({ lang, setLang, home = false }) {
   const ar = lang === "ar";
   const [open, setOpen] = useState(false);
   const headerRef = useRef(null);
@@ -124,6 +125,8 @@ function Header({ lang, setLang }) {
       ["/contact", "تواصل مع الكلية", "Contact the Faculty"],
       ["/alumni", "الخريجون", "Alumni"],
       ["/portal", "بوابة Smart Faculty", "Smart Faculty Portal"],
+      ["https://buc.edu.eg/buc-facilities/library/", "مكتبة الجامعة", "University library"],
+      ["https://buc.edu.eg/wp-content/uploads/2026/01/%D9%85%D9%8A%D8%AB%D8%A7%D9%82-%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A.pdf", "ميثاق الطالب", "Student code of conduct"],
     ] },
   ];
   const close = () => setOpen(false);
@@ -147,21 +150,24 @@ function Header({ lang, setLang }) {
     <img className="header-backdrop" src={heroImage} alt="" aria-hidden="true"/>
     <div className="shell nav-row">
       <div className="header-identity">
-        <a className="brand brand-logo" href="/" onClick={close}><img src={bucLogo} alt={ar ? "جامعة بدر بالقاهرة" : "Badr University in Cairo"}/></a>
+        <a className="brand brand-logo" href="/" onClick={close}><img src={home ? bucBlueLogo : bucLogo} alt={ar ? "جامعة بدر بالقاهرة" : "Badr University in Cairo"}/></a>
         <span className="header-faculty-name">{ar ? "كلية إدارة الأعمال والاقتصاد" : "Faculty of Business & Economics"}</span>
       </div>
-      <div className="header-quicklinks">
+      {home ? <nav className="header-quicklinks student-utilities header-conversion-actions" aria-label={ar ? "مساعدة الزوار" : "Visitor support"}>
+        <a className="header-adviser-link" href="/contact?topic=program"><span className="utility-label-full">{ar ? "تحدّث مع مستشار البرامج" : "Talk to a program adviser"}</span><span className="utility-label-short">{ar ? "استشارة البرامج" : "Program advice"}</span><Arrow/></a>
+        <a className="header-visit-link" href="/contact?topic=visit">{ar ? "احجز زيارة للكلية" : "Book a Faculty visit"}<Arrow/></a>
+      </nav> : <div className="header-quicklinks">
         <a href="/programs">{ar ? "البرامج" : "PROGRAMS"}</a>
         <a href="/admissions">{ar ? "القبول والرسوم" : "ADMISSIONS & FEES"}</a>
         <a className="quicklink-cta" href="/contact?topic=admissions">{ar ? "اسأل فريق القبول" : "ASK ADMISSIONS"}<Arrow/></a>
-      </div>
+      </div>}
       <div className="nav-actions">
-        <button className="language" onClick={() => setLang(ar ? "en" : "ar")} aria-label={ar ? "Switch to English" : "التبديل إلى العربية"}>{ar ? "EN" : "ع"}</button>
+        <button className="language" onClick={() => setLang(ar ? "en" : "ar")} aria-label={ar ? "Switch to English" : "التبديل إلى العربية"}>{ar ? "English" : "Arabic"}</button>
         <button ref={menuButtonRef} className={open ? "menu active" : "menu"} onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-navigation" aria-label={ar ? (open ? "إغلاق القائمة" : "فتح القائمة") : (open ? "Close menu" : "Open menu")}><b>{ar ? "القائمة" : "MENU"}</b><i aria-hidden="true"><span/><span/><span/></i></button>
       </div>
       <nav id="site-navigation" className={open ? "nav-links open" : "nav-links"} aria-label={ar ? "التنقل الرئيسي" : "Main navigation"}>
         <div className="nav-intro"><span>{ar ? "كلية إدارة الأعمال والاقتصاد" : "FACULTY OF BUSINESS & ECONOMICS"}</span><strong>{ar ? "حدد وجهتك التالية" : "Find your next step"}</strong></div>
-        <div className="nav-groups">{menuGroups.map(group => <div className="nav-group" key={group.titleEn}><h2>{ar ? group.titleAr : group.titleEn}</h2>{group.links.map(([href, a, e]) => <a key={href} href={href} onClick={close}>{ar ? a : e}<Arrow/></a>)}</div>)}</div>
+        <div className="nav-groups">{menuGroups.map(group => <div className="nav-group" key={group.titleEn}><h2>{ar ? group.titleAr : group.titleEn}</h2>{group.links.map(([href, a, e]) => <a key={href} href={href} target={href.startsWith("https://") ? "_blank" : undefined} rel={href.startsWith("https://") ? "noopener noreferrer" : undefined} onClick={close}>{ar ? a : e}<Arrow/></a>)}</div>)}</div>
         <a className="nav-contact" href="/contact?topic=admissions" onClick={close}><span>{ar ? "لديك سؤال قبل التقديم؟" : "A question before you apply?"}</span><strong>{ar ? "تواصل مع فريق القبول" : "Talk to Admissions"}<Arrow/></strong></a>
       </nav>
     </div>
@@ -203,7 +209,7 @@ function Footer({ lang }) {
 
 function Layout({ lang, setLang, children, dark = false, home = false }) {
   const classes = ["app", dark ? "dark-page" : "", home ? "landing-app" : ""].filter(Boolean).join(" ");
-  return <div className={classes}><Header lang={lang} setLang={setLang}/>{children}<Footer lang={lang}/></div>;
+  return <div className={classes}><Header lang={lang} setLang={setLang} home={home}/>{children}<Footer lang={lang}/></div>;
 }
 
 function Eyebrow({ children }) { return <span className="eyebrow">{children}</span>; }
@@ -461,7 +467,7 @@ function Contact({ lang, setLang }) {
   const ar = lang === "ar";
   const [sent, setSent] = useState(false);
   const submit = e => { e.preventDefault(); setSent(true); e.currentTarget.reset(); };
-  return <Layout lang={lang} setLang={setLang}><main><section className="contact-hero"><div className="shell contact-hero-grid"><div><Eyebrow>{ar ? "تواصل معنا" : "CONTACT US"}</Eyebrow><h1>{ar ? "كيف يمكننا مساعدتك؟" : "How can we help?"}</h1><p>{ar ? "اختر موضوع رسالتك واكتب التفاصيل التي تساعدنا على توجيه استفسارك إلى المسار المناسب." : "Choose your topic and share enough detail to help us direct your enquiry."}</p></div><img src={contactImage} alt=""/></div></section><section className="section contact-section"><div className="shell contact-grid"><aside><span>01</span><h2>{ar ? "بيانات التواصل" : "Contact details"}</h2><div><small>{ar ? "البريد الإلكتروني" : "Email"}</small><a href="mailto:business@buc.edu.eg">business@buc.edu.eg</a></div><div><small>{ar ? "الهاتف" : "Phone"}</small><a dir="ltr" href="tel:+20228650400">+20 2 2865 0400</a></div><div><small>{ar ? "ساعات الاستقبال" : "Office hours"}</small><p>{ar ? "الأحد إلى الخميس · 9:00 ص – 3:00 م" : "Sunday to Thursday · 9:00 AM – 3:00 PM"}</p></div><div><small>{ar ? "الموقع" : "Location"}</small><p>{ar ? "مدينة بدر، القاهرة" : "Badr City, Cairo"}</p></div></aside><form className="contact-form" onSubmit={submit}><div className="form-head"><span>02</span><h2>{ar ? "أرسل رسالة" : "Send a message"}</h2></div>{sent && <p className="success" role="status">{ar ? "شكرًا لتواصلك. تم تسجيل رسالتك بنجاح." : "Thank you for contacting us. Your message has been recorded."}</p>}<div className="field-row"><label>{ar ? "الاسم الكامل" : "Full name"}<input required autoComplete="name"/></label><label>{ar ? "البريد الإلكتروني" : "Email address"}<input required type="email" autoComplete="email"/></label></div><div className="field-row"><label>{ar ? "رقم الهاتف" : "Phone number"}<input type="tel" autoComplete="tel"/></label><label>{ar ? "موضوع الرسالة" : "Topic"}<select defaultValue={new URLSearchParams(location.search).get("topic") || "general"}><option value="general">{ar ? "استفسار عام" : "General enquiry"}</option><option value="admissions">{ar ? "القبول والتقديم" : "Admissions"}</option><option value="program">{ar ? "البرامج الأكاديمية" : "Academic programs"}</option><option value="event">{ar ? "الأخبار والفعاليات" : "News and events"}</option><option value="alumni">{ar ? "الخريجون" : "Alumni"}</option></select></label></div><label>{ar ? "رسالتك" : "Your message"}<textarea required minLength="10" rows="6"/></label><button className="button navy">{ar ? "إرسال الرسالة" : "Send message"}<Arrow/></button></form></div></section></main></Layout>;
+  return <Layout lang={lang} setLang={setLang}><main><section className="contact-hero"><div className="shell contact-hero-grid"><div><Eyebrow>{ar ? "تواصل معنا" : "CONTACT US"}</Eyebrow><h1>{ar ? "كيف يمكننا مساعدتك؟" : "How can we help?"}</h1><p>{ar ? "اختر موضوع رسالتك واكتب التفاصيل التي تساعدنا على توجيه استفسارك إلى المسار المناسب." : "Choose your topic and share enough detail to help us direct your enquiry."}</p></div><img src={contactImage} alt=""/></div></section><section className="section contact-section"><div className="shell contact-grid"><aside><span>01</span><h2>{ar ? "بيانات التواصل" : "Contact details"}</h2><div><small>{ar ? "البريد الإلكتروني" : "Email"}</small><a href="mailto:business@buc.edu.eg">business@buc.edu.eg</a></div><div><small>{ar ? "الهاتف" : "Phone"}</small><a dir="ltr" href="tel:+20228650400">+20 2 2865 0400</a></div><div><small>{ar ? "ساعات الاستقبال" : "Office hours"}</small><p>{ar ? "الأحد إلى الخميس · 9:00 ص – 3:00 م" : "Sunday to Thursday · 9:00 AM – 3:00 PM"}</p></div><div><small>{ar ? "الموقع" : "Location"}</small><p>{ar ? "مدينة بدر، القاهرة" : "Badr City, Cairo"}</p></div></aside><form className="contact-form" onSubmit={submit}><div className="form-head"><span>02</span><h2>{ar ? "أرسل رسالة" : "Send a message"}</h2></div>{sent && <p className="success" role="status">{ar ? "شكرًا لتواصلك. تم تسجيل رسالتك بنجاح." : "Thank you for contacting us. Your message has been recorded."}</p>}<div className="field-row"><label>{ar ? "الاسم الكامل" : "Full name"}<input required autoComplete="name"/></label><label>{ar ? "البريد الإلكتروني" : "Email address"}<input required type="email" autoComplete="email"/></label></div><div className="field-row"><label>{ar ? "رقم الهاتف" : "Phone number"}<input type="tel" autoComplete="tel"/></label><label>{ar ? "موضوع الرسالة" : "Topic"}<select defaultValue={new URLSearchParams(location.search).get("topic") || "general"}><option value="general">{ar ? "استفسار عام" : "General enquiry"}</option><option value="admissions">{ar ? "القبول والتقديم" : "Admissions"}</option><option value="program">{ar ? "البرامج الأكاديمية" : "Academic programs"}</option><option value="visit">{ar ? "حجز زيارة للكلية" : "Book a Faculty visit"}</option><option value="event">{ar ? "الأخبار والفعاليات" : "News and events"}</option><option value="alumni">{ar ? "الخريجون" : "Alumni"}</option></select></label></div><label>{ar ? "رسالتك" : "Your message"}<textarea required minLength="10" rows="6"/></label><button className="button navy">{ar ? "إرسال الرسالة" : "Send message"}<Arrow/></button></form></div></section></main></Layout>;
 }
 
 function Portal({ lang, setLang }) {

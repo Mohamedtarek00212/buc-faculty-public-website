@@ -11,7 +11,10 @@ html[dir="rtl"] .home-main.faculty-home .editorial-hero .hero-overlay { backgrou
 .faculty-slide-controls i { display: block; width: 25px; height: 2px; background: #ffffff55; transition: width .3s,background .3s; }
 .faculty-slide-controls i.is-active { width: 47px; background: #fff; }
 .faculty-slide-controls .slide-pause { width: 34px; justify-content: center; border: 1px solid #ffffff55; border-radius: 50%; font-size: 15px; }
-.home-main.faculty-home .smart-access { padding-bottom: 5px; }
+.home-main.faculty-home .smart-access { padding-bottom: 0; }
+@media (min-width:821px) {
+  .home-main.faculty-home .smart-access { height: clamp(2px,.4vw,6px); }
+}
 .home-main.faculty-home .access-feature { min-height: 152px; padding: 16px 20px; }
 .home-main.faculty-home .access-feature-top { display: none; }
 .home-main.faculty-home .access-feature h2 { font-size: 18px; margin-top: 10px; }
