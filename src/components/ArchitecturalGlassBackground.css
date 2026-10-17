@@ -1,0 +1,47 @@
+.architectural-glass {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 0;
+  bottom: -1px;
+  height: clamp(190px, 22vw, 255px);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.architectural-glass svg {
+  position: absolute;
+  left: -12%;
+  bottom: 0;
+  display: block;
+  width: 124%;
+  height: 100%;
+}
+
+.architectural-glass__sheet {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+.architectural-glass__sheet--light { animation: architectural-glass-drift-left 13s ease-in-out infinite alternate; }
+.architectural-glass__sheet--middle { animation: architectural-glass-drift-right 10s ease-in-out infinite alternate; }
+.architectural-glass__sheet--front { animation: architectural-glass-drift-left 15s ease-in-out infinite alternate-reverse; }
+
+@keyframes architectural-glass-drift-left {
+  from { transform: translate3d(-22px, 4px, 0); }
+  to { transform: translate3d(24px, -4px, 0); }
+}
+
+@keyframes architectural-glass-drift-right {
+  from { transform: translate3d(20px, -3px, 0); }
+  to { transform: translate3d(-24px, 5px, 0); }
+}
+
+@media (max-width: 820px) {
+  .architectural-glass { height: 190px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architectural-glass__sheet { animation: none; will-change: auto; }
+}

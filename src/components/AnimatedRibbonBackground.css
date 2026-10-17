@@ -1,0 +1,47 @@
+.animated-ribbon-background {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  z-index: 0;
+  height: var(--ribbon-height);
+  max-height: 34%;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--ribbon-opacity, 1);
+  --ribbon-navy: #102a43;
+  --ribbon-blue: var(--academic-blue, #1e4e79);
+  --ribbon-light: #78b7e3;
+  --ribbon-overlay: #e4f3ff;
+}
+
+.animated-ribbon-background__layer {
+  position: absolute;
+  left: -20%;
+  bottom: -12px;
+  display: block;
+  width: 140%;
+  height: calc(100% + 24px);
+  fill: var(--layer-color);
+  opacity: var(--layer-opacity);
+  transform-origin: 50% 100%;
+  will-change: transform;
+  animation: academic-ribbon-drift var(--layer-duration) cubic-bezier(.45, 0, .55, 1) var(--layer-delay) infinite;
+}
+
+/* The fixed lower fill joins the following section even at animation extremes. */
+.animated-ribbon-background__fill {
+  position: absolute;
+  inset: 58% 0 0;
+  background: linear-gradient(to bottom, transparent, var(--ribbon-blue) 92%);
+}
+
+@keyframes academic-ribbon-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scaleY(1); }
+  50% { transform: translate3d(var(--layer-x), var(--layer-lift), 0) scaleY(var(--layer-stretch)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-ribbon-background__layer { animation: none; transform: none; will-change: auto; }
+}
